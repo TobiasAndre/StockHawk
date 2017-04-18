@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name" translatable="false">Stock Hawk</string>
+    <string name="action_mudar_unidade">Mudar unidade</string>
+    <string name="adicionar_sigla">Adicionar Sigla</string>
+    <string name="input_hint" translatable="false">FB</string>
+    <string name="sem_conexao_internet">Este Aplicativo precisa de conexão com a internet</string>
+    <string name="sem_conexao_titulo">Sem Internet!</string>
+    <string name="sem_conexao_mensagem">Sem Conexão com a Internet.Verifique sua conexão com a internet e tente novamente.</string>
+    <string name="input_pre_fill" />
+    <string name="cotacao_adicionada">Esta Cotação já foi adicionada!</string>
+    <string name="add_nova_cotacao">Adicionar nova Cotação</string>
+    <string name="titulo_detalhe_cotacao">Cotação</string>
+    <string name="stock_detail_tab1">5 Dias</string>
+    <string name="stock_detail_tab2">2 Semanas</string>
+    <string name="stock_detail_tab3">1 Mês</string>
+    <string name="detalhe_cotacao_tab_header">NASDAQ: %1$s</string>
+    <string name="disagree">Cancel</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="offline">Offline</string>
+    <string name="tentar_novamente">Tentar Novamente</string>
+    <string name="widget_name" translatable="false">Stock Hawk</string>
+    <string name="titulo_sem_cotacoes">Sem Cotações</string>
+    <string name="mensagem_sem_cotacoes">Clique para adicionar nova cotação</string>
+</resources>
