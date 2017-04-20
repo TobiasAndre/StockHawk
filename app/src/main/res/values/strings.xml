@@ -9,6 +9,7 @@
     <string name="input_pre_fill" />
     <string name="cotacao_adicionada">Esta Cotação já foi adicionada!</string>
     <string name="add_nova_cotacao">Adicionar nova Cotação</string>
+    <string name="cotacao_inexistente">Cotação Inexistente</string>
     <string name="titulo_detalhe_cotacao">Cotação</string>
     <string name="stock_detail_tab1">5 Dias</string>
     <string name="stock_detail_tab2">2 Semanas</string>

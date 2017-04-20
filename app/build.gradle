@@ -6,7 +6,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.tobiasandre.stockhawk"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -31,6 +31,10 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
+ext {
+    supportLibVersion = '23.3.0'
+}
+
 dependencies {
     compile('com.github.afollestad.material-dialogs:core:0.8.5.8@aar') {
         transitive = true
@@ -38,13 +42,13 @@ dependencies {
     compile 'com.google.android.gms:play-services-gcm:8.4.0'
     compile 'net.simonvt.schematic:schematic-compiler:0.6.3'
     compile 'net.simonvt.schematic:schematic:0.6.3'
-    compile 'com.android.support:design:23.3.0'
+    compile "com.android.support:design:${supportLibVersion}"
     compile 'com.squareup.retrofit2:retrofit:2.0.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0'
     compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.android.support:support-v4:23.3.0'
-    compile 'com.android.support:recyclerview-v7:23.3.0'
+    compile "com.android.support:support-v4:${supportLibVersion}"
+    compile "com.android.support:recyclerview-v7:${supportLibVersion}"
     compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
-    compile 'com.android.support:gridlayout-v7:23.3.0'
+    compile "com.android.support:gridlayout-v7:${supportLibVersion}"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
