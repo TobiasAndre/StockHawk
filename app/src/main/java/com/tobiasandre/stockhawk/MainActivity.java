@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements
                             new MaterialDialog.InputCallback() {
                                 @Override
                                 public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
-                                    addCotacao(input.toString().trim());
+                                    addCotacao(input.toString().trim().toUpperCase());
                                 }
                             }).build();
             mDialogo.show();

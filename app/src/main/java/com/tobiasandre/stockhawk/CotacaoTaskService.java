@@ -1,13 +1,18 @@
 package com.tobiasandre.stockhawk;
 
+import android.app.Application;
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
+import android.os.Handler;
 import android.os.RemoteException;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GcmNetworkManager;
@@ -21,6 +26,7 @@ import com.tobiasandre.stockhawk.sync.CotacoesService;
 import com.tobiasandre.stockhawk.sync.RespostaGetCotacao;
 import com.tobiasandre.stockhawk.sync.RespostaGetCotacoes;
 import com.tobiasandre.stockhawk.sync.RespostaGetHistoricoCotacao;
+import com.tobiasandre.stockhawk.util.DisplayToast;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -31,6 +37,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import butterknife.Bind;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -50,8 +57,12 @@ public class CotacaoTaskService extends GcmTaskService {
     private StringBuilder mStoredSymbols = new StringBuilder();
     private boolean mIsUpdate;
 
+    Handler mHandler;
+
+
     public CotacaoTaskService(Context context) {
         mContext = context;
+        mHandler=new Handler();
     }
 
     @SuppressWarnings("unused")
@@ -84,7 +95,18 @@ public class CotacaoTaskService extends GcmTaskService {
                 Call<RespostaGetCotacao> call = service.getCotacao(query);
                 Response<RespostaGetCotacao> response = call.execute();
                 RespostaGetCotacao responseGetStock = response.body();
-                saveQuotes2Database(responseGetStock.getCotacoes());
+                List<Cotacao> icotacoes = responseGetStock.getCotacoes();
+                if(icotacoes.size()==0){
+
+                    Intent intent = new Intent();
+                    intent.setAction("com.tobiasandre.stockhawk.MainActivity.STOCK_NOT_FOUND");
+                    mContext.sendBroadcast(intent);
+
+                    Log.e(LOG_TAG, "SYMBOL NOT EXIST!");
+
+                }else {
+                    saveQuotes2Database(responseGetStock.getCotacoes());
+                }
             }
 
             return GcmNetworkManager.RESULT_SUCCESS;
@@ -130,7 +152,6 @@ public class CotacaoTaskService extends GcmTaskService {
 
     private void saveQuotes2Database(List<Cotacao> cotacoes) throws RemoteException, OperationApplicationException {
         ContentResolver resolver = mContext.getContentResolver();
-
         ArrayList<ContentProviderOperation> batchOperations = new ArrayList<>();
         for (Cotacao cotacao : cotacoes) {
 

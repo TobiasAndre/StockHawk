@@ -20,6 +20,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
+
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
         <service
             android:name=".CotacaoTaskService"
             android:exported="true"
@@ -36,12 +46,6 @@
             android:authorities="com.tobiasandre.stockhawk.data.CotacaoProvider"
             android:exported="true" />
 
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".DetalheCotacaoActivity"
             android:label="@string/titulo_detalhe_cotacao">
@@ -62,6 +66,13 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/stock_widget_metadata" />
         </receiver>
+
+        <receiver android:name=".sync.NoStockFoundBroadcast">
+            <intent-filter>
+                <action android:name="com.tobiasandre.stockhawk.MainActivity.STOCK_NOT_FOUND"></action>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
